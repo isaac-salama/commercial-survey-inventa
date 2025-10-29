@@ -1,0 +1,43 @@
+{
+  "name": "commercial-survey",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint",
+    "drizzle:generate": "drizzle-kit generate --config=drizzle.config.ts",
+    "drizzle:push": "drizzle-kit push --config=drizzle.config.ts",
+    "drizzle:studio": "drizzle-kit studio --config=drizzle.config.ts",
+    "seed:csv": "node scripts/seed-from-csv.mjs",
+    "_placeholder": "keep"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@vercel/postgres": "^0",
+    "bcryptjs": "^2",
+    "drizzle-orm": "^0",
+    "echarts": "^5.6.0",
+    "echarts-for-react": "^3.0.2",
+    "framer-motion": "^12.23.24",
+    "next": "15.5.4",
+    "next-auth": "^4",
+    "pg": "^8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
