@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+// Image not used; header uses inline SVG mark
+import InventaLogoMark from "@/components/inventa-logo-mark";
 import LogoutButton from "../../logout-button";
 import UnlockCtaCard from "./unlock-cta-card";
 import { withPlatformDb } from "@/db/client";
@@ -48,18 +49,12 @@ export default async function SellerHomePage() {
       <div className="max-w-6xl mx-auto">
         {/* Header: logo + logout */}
         <div className="flex items-center justify-between mb-10">
-          <Image
-            src="/unlock-minal-logo-branco.svg"
-            alt="Unlock logo"
-            width={75}
-            height={43}
-            priority
-          />
+          <InventaLogoMark width={75} height={43} />
           <LogoutButton />
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl font-semibold mb-6">Bemvindo(a) ao Portal de Unlock</h1>
+        <h1 className="text-2xl font-semibold mb-6">Bem-vindo(a) ao Portal da Inventa</h1>
 
         {/* CTA Cards (visibility controlled per seller) */}
         <div className="space-y-6">
@@ -67,7 +62,7 @@ export default async function SellerHomePage() {
           {showAssessment && (
             <UnlockCtaCard
               imageSrc="/card-2.png"
-              title="Complete seu Unlock Assessment"
+              title="Complete seu Inventa Assessment"
               subtitle="Passe-nos as informações necessárias para que possamos elaborar uma proposta de colaboração."
               ctaText="Acessar"
               variant="alt"

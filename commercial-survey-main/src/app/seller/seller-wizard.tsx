@@ -110,7 +110,7 @@ export default function SellerWizard({ resultsOnly = false, lockResultsNav = tru
     };
   }, [currentStep]);
 
-  // Unlock Index (média geral) = média aritmética das médias das seções, 1 casa decimal
+  // Inventa Index (média geral) = média aritmética das médias das seções, 1 casa decimal
   const generalAverage = useMemo(() => {
     if (!resultsDims || resultsDims.length === 0) return null;
     const sum = resultsDims.reduce((acc, d) => acc + (typeof d.averageScore === "number" ? d.averageScore : Number(d.averageScore)), 0);
@@ -371,11 +371,11 @@ export default function SellerWizard({ resultsOnly = false, lockResultsNav = tru
                   )}
                 </Card>
 
-                {/* Right: Unlock Index + per-section averages */}
+                {/* Right: Inventa Index + per-section averages */}
                 <Card className="p-4 bg-white text-[#111827]">
                   <div className="mb-3 flex items-end justify-between">
                     <div>
-                      <h2 className="text-lg font-semibold">Unlock Index</h2>
+                      <h2 className="text-lg font-semibold">Inventa Index</h2>
                       <p className="text-sm text-[#6b7280]">Média geral (0–5)</p>
                     </div>
                     {generalAverage !== null ? (
@@ -417,7 +417,7 @@ export default function SellerWizard({ resultsOnly = false, lockResultsNav = tru
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold">Conclusão</h3>
                 <p className="text-base text-[#3a3a3a]">
-                  Você concluiu seu assessment no Unlock Index com sucesso. Um especialista de negócios da nossa equipe entrará em contato para continuar a conversa.
+                  Você concluiu seu assessment no Inventa Index com sucesso. Um especialista de negócios da nossa equipe entrará em contato para continuar a conversa.
                 </p>
               </div>
             </div>

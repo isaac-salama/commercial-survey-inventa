@@ -16,7 +16,16 @@ function getPool(): Pool {
       "DATABASE_URL is not set. Provide DATABASE_URL (or commercial_survey_DATABASE_URL) in the environment."
     );
   }
-  pool = new Pool({ connectionString: url, max: 10 });
+  // Enforce TLS for cloud providers like Neon even if the URL is missing ssl flags.
+  // Prefer SSL when the URL includes ssl=true or sslmode=require, or when using Neon hosts.
+  let ssl: false | { rejectUnauthorized: boolean } = false;
+  try {
+    const needsSsl = /sslmode=require/i.test(url) || /[?&]ssl=true/i.test(url) || /\.neon\.tech\b/.test(url);
+    if (needsSsl) ssl = { rejectUnauthorized: false };
+  } catch {
+    // Fallback: no SSL tweaks
+  }
+  pool = new Pool({ connectionString: url, max: 10, ssl });
   return pool;
 }
 

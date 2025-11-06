@@ -58,7 +58,7 @@ export default function IndexCard({ radarData, dims, generalAverage, sections, s
     <Card className="p-4 bg-white text-[#111827]">
       <div className="mb-3 flex items-end justify-between">
         <div>
-          <h2 className="text-lg font-semibold">Unlock Index</h2>
+          <h2 className="text-lg font-semibold">Inventa Index</h2>
           <p className="text-sm text-[#6b7280]">Média geral (0–5)</p>
         </div>
         {generalAverage !== null ? (

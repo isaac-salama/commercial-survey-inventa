@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
 import { withPlatformDb } from "./db/client";
 import { users } from "./db/schema";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 export const authOptions: NextAuthOptions = {
   // Keep Node.js runtime in route for bcrypt compatibility
@@ -15,22 +15,30 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        const email = credentials?.email;
+        const email = credentials?.email?.trim();
+        const normalizedEmail = email ? email.toLowerCase() : undefined;
         const password = credentials?.password;
         if (!email || !password) return null;
 
+        // Case-insensitive exact match on email (handles casing variations safely)
         const result = await withPlatformDb((db) =>
           db
             .select()
             .from(users)
-            .where(eq(users.email, email))
+            .where(eq(sql`lower(${users.email})`, normalizedEmail!))
             .limit(1)
         );
         const user = result[0];
-        if (!user) return null;
+        if (!user) {
+          console.info("[AUTH] No user found for email (case-insensitive)", { email: normalizedEmail });
+          return null;
+        }
 
         const ok = await compare(password, user.passwordHash);
-        if (!ok) return null;
+        if (!ok) {
+          console.info("[AUTH] Password mismatch for email", { email: normalizedEmail, userId: user.id });
+          return null;
+        }
 
         return {
           id: String(user.id),

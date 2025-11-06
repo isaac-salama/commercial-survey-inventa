@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+// Image not used; header uses inline SVG mark
+import InventaLogoMark from "@/components/inventa-logo-mark";
 import SellerWizard from "../seller-wizard";
 import { withSellerDb } from "@/db/client";
 import { sellerProgress } from "@/db/schema";
@@ -14,7 +15,7 @@ export default async function SellerIndexPage() {
   const role = session?.user?.role;
 
   if (!session) {
-    redirect("/");
+    redirect("/signup?next=/seller/index");
   }
 
   if (role !== "seller") {
@@ -49,12 +50,7 @@ export default async function SellerIndexPage() {
     <main className="min-h-screen px-4 pb-4 pt-8 bg-[#3135ef] text-white">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-10">
-          <Image
-            src="/unlock-minal-logo-branco.svg"
-            alt="Unlock logo"
-            width={75}
-            height={43}
-          />
+          <InventaLogoMark width={75} height={43} />
           <BackButton />
         </div>
         <SellerWizard resultsOnly={resultsOnly} lockResultsNav={lockResultsNav} />
@@ -62,4 +58,3 @@ export default async function SellerIndexPage() {
     </main>
   );
 }
-

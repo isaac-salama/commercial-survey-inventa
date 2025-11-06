@@ -17,7 +17,7 @@ type Props = {
 
 export default function UnlockCtaCard({
   onClick,
-  title = "Descubra seu Unlock Index",
+  title = "Descubra seu Inventa Index",
   subtitle = "Entenda a maturidade do seu e-commerce e transforme em vantagem competitiva.",
   ctaText = "Calcular agora",
   imageSrc = "/card-1.png",
@@ -38,7 +38,7 @@ export default function UnlockCtaCard({
     <div
       ref={rootRef}
       className={`${styles.cardRoot} ${variant === "alt" ? styles.cardRootAlt : ""} grid w-full md:grid-cols-[auto_1fr] items-stretch gap-4 md:gap-6 p-6 md:p-8 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent`}
-      aria-label="Unlock Index CTA"
+      aria-label="Inventa Index CTA"
       role="button"
       tabIndex={0}
       onClick={handleCta}

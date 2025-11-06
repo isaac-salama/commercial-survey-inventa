@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unlock - eCommerce Operations Readiness Index",
-  description: "Unlock — eCommerce Operations Readiness Index",
+  title: "Inventa - eCommerce Operations Readiness Index",
+  description: "Inventa — eCommerce Operations Readiness Index",
   icons: {
-    icon: "/favicon-unlock.ico?v=2",
-    shortcut: "/favicon-unlock.ico?v=2",
-    apple: "/favicon-unlock.ico",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 

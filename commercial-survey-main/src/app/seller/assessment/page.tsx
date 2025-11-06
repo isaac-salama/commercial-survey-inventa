@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+// Image not used; header uses inline SVG mark
+import InventaLogoMark from "@/components/inventa-logo-mark";
 import BackButton from "../../back-button";
 import AssessmentForm from "./assessment-form";
 
@@ -20,7 +21,7 @@ export default async function SellerAssessmentPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header: logo + logout */}
         <div className="flex items-center justify-between mb-10">
-          <Image src="/unlock-minal-logo-branco.svg" alt="Unlock logo" width={75} height={43} priority />
+          <InventaLogoMark width={75} height={43} />
           <BackButton />
         </div>
 

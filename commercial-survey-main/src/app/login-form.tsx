@@ -5,7 +5,9 @@ import { signIn, getSession } from "next-auth/react";
 import type { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import { PrimaryButton } from "@/components/primary-button";
-import Image from "next/image";
+import Link from "next/link";
+// no image import; inline SVG wordmark is used
+import InventaLogoWord from "@/components/inventa-logo-word";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -90,13 +92,9 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <Image
-        src="/unlock-logo-03.svg"
-        alt="Unlock logo"
-        width={133}
-        height={40}
-        className="mx-auto mb-6"
-      />
+      <div className="mx-auto mb-6 flex items-center justify-center">
+        <InventaLogoWord width={133} height={40} />
+      </div>
       <div className="text-center">
         <h1 className="text-xl font-semibold text-white mb-6">
           <span>Transforme sua operação de e-commerce </span>
@@ -133,9 +131,15 @@ export default function LoginForm() {
       </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <div className="flex justify-end">
-        <PrimaryButton type="submit" disabled={loading}>
-          {loading ? "Entrando..." : "Entrar"}
-        </PrimaryButton>
+        <div className="flex items-center justify-between w-full">
+          <Link href="/forgot-password" className="underline text-sm">Esqueci a senha</Link>
+          <div className="flex items-center gap-2">
+            <Link href="/signup" className="underline text-sm">Criar conta</Link>
+            <PrimaryButton type="submit" disabled={loading}>
+              {loading ? "Entrando..." : "Entrar"}
+            </PrimaryButton>
+          </div>
+        </div>
       </div>
     </form>
   );

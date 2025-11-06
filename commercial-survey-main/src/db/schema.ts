@@ -212,3 +212,20 @@ export const sellerAssessments = pgTable(
     bySellerIdx: index("seller_assessments_seller_id_idx").on(t.sellerId),
   })
 );
+
+// Password reset tokens (hashed token storage)
+export const passwordResetTokens = pgTable(
+  "password_reset_tokens",
+  {
+    id: serial("id").primaryKey(),
+    email: varchar("email", { length: 255 }).notNull(),
+    tokenHash: varchar("token_hash", { length: 255 }).notNull(),
+    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
+    usedAt: timestamp("used_at", { mode: "date" }),
+    createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
+  },
+  (t) => ({
+    byTokenHashUnique: uniqueIndex("password_reset_tokens_token_hash_unique").on(t.tokenHash),
+    byEmailIdx: index("password_reset_tokens_email_idx").on(t.email),
+  })
+);

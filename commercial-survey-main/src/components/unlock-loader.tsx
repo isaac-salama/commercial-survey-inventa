@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import InventaLogoMark from "@/components/inventa-logo-mark";
 import React from "react";
 
 type UnlockLoaderProps = {
@@ -9,7 +9,7 @@ type UnlockLoaderProps = {
   on?: "light" | "dark"; // background context where the loader sits
 };
 
-// Branded loader with Unlock logo centered over an animated ring and soft glow.
+// Branded loader with Inventa logo centered over an animated ring and soft glow.
 // Designed to keep the white logo visible regardless of surrounding UI by
 // providing its own contrasting disc background when used on light surfaces.
 export function UnlockLoader({ size = 128, label = "Carregando perguntas…", on = "light" }: UnlockLoaderProps) {
@@ -59,15 +59,9 @@ export function UnlockLoader({ size = 128, label = "Carregando perguntas…", on
           }}
         />
 
-        {/* Unlock logo */}
+        {/* Inventa logo */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Image
-            src="/unlock-minal-logo-branco.svg"
-            alt="Unlock"
-            width={logoSize}
-            height={Math.round(logoSize * 0.58)}
-            priority={false}
-          />
+          <InventaLogoMark width={logoSize} height={logoSize} />
         </div>
       </div>
 
@@ -81,4 +75,3 @@ export function UnlockLoader({ size = 128, label = "Carregando perguntas…", on
     </div>
   );
 }
-
